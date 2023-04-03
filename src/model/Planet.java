@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Planet {
     private String name;
-
     private double radius;
     private double rotationTime;
 
@@ -40,9 +39,10 @@ public class Planet {
     public void setRotationTime(double rotationTime) {
         this.rotationTime = rotationTime;
     }
-    public String behavior(){
-    double time = 2*3.14*this.radius/this.rotationTime;
-        return "Планета: " + this.name+" имеет скорость вращения: " +Double.toString(time);
+
+    public String behavior() {
+        double time = 2 * Math.PI * this.radius / this.rotationTime;
+        return "Планета: " + this.name + ", скорость вращения: " + time;
     }
 
     @Override

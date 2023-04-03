@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class Galaxy {
@@ -23,52 +24,51 @@ public class Galaxy {
     }
 
     public ArrayList<Planet> getPlanets() {
-        return planets;
+        return new ArrayList<>(planets);
     }
 
     public void setPlanets(ArrayList<Planet> planets) {
         this.planets = planets;
 
     }
-    public void add(Planet planet){
+
+    public void add(Planet planet) {
         planets.add(planet);
     }
-    public void delete(String name){
+
+    public void delete(String name) {
         planets.removeIf(del -> Objects.equals(del.getName(), name));
-    }public void delete(Planet planet){
-        planets.removeIf(del -> del == planet);
     }
-    public Planet search(Planet planet){
-        for (Planet sear : planets){
-            if(sear == planet){
-                return sear;
-            }
-        }
-        return null;
+
+    public void delete(Planet planet) {
+        planets.removeIf(del -> del.equals(planet));
     }
-    public Planet search(String name){
-        for (Planet sear : planets){
-            if(Objects.equals(sear.getName(), name)){
-                return sear;
+
+    public Planet search(Planet planet) {
+        for (Planet search : planets) {
+            if (search.equals(planet)) {
+                return search;
             }
         }
         return null;
     }
 
-    public String behavior(){
-        StringBuilder res = new StringBuilder("Галактика имеет: \n");
-        for (Planet planet : planets){
-            res.append(planet.behavior()).append("\n");
+    public Planet search(String name) {
+        for (Planet search : planets) {
+            if (search.getName().equals(name)) {
+                return search;
+            }
         }
-        return res.toString();
+        return null;
     }
-/*public String behavior(Planet[] planets) {
+
+    public String behavior() {
         StringBuilder res = new StringBuilder("Галактика имеет: \n");
         for (Planet planet : planets) {
             res.append(planet.behavior()).append("\n");
         }
         return res.toString();
-    }*/
+    }
 
     @Override
     public boolean equals(Object o) {
